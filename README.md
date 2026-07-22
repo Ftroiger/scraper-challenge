@@ -9,7 +9,7 @@ Está construido **solo con peticiones HTTP + parsing** (`axios` + `cheerio`),
 **sin ninguna automatización de navegador** (nada de Puppeteer / Playwright /
 Selenium), tal como exige el desafío.
 
-## 🎯 Sitios objetivo
+## Sitios objetivo
 
 | Sitio | URL | Acceso |
 |-------|-----|--------|
@@ -20,13 +20,13 @@ El scraper apunta por defecto al **repositorio digital de OEFA** (Tribunal de
 Fiscalización Ambiental), que es público y permite desarrollar y validar sin
 VPN. El sitio del Poder Judicial usa la **misma tecnología** (JSF/PrimeFaces con
 `ViewState` y grilla `DataTable`), por lo que la misma arquitectura aplica
-cambiando la configuración (ver [Adaptar a otro sitio](#-adaptar-a-otro-sitio)).
+cambiando la configuración (ver [Adaptar a otro sitio](#adaptar-a-otro-sitio)).
 
 Al momento de escribir esto, OEFA expone **1753 registros** en **176 páginas**.
 
 ---
 
-## 🚀 Instalación
+## Instalación
 
 Requisitos: **Node.js ≥ 18**.
 
@@ -35,7 +35,7 @@ cd scraper-challenge
 npm install
 ```
 
-## ▶️ Uso
+## Uso
 
 ```bash
 # Ejecución completa: extrae TODOS los metadatos y descarga TODOS los PDFs
@@ -65,14 +65,14 @@ Pasá flags tras `--` (p.ej. `npm run scrape -- --max-pages 5`):
 | `--url URL` | URL objetivo alternativa. |
 | `--help` | Ayuda. |
 
-> 💡 **No hace falta descargar todos los PDFs de una sola vez.** El scraper está
+> **No hace falta descargar todos los PDFs de una sola vez.** El scraper está
 > diseñado para poder llegar al final si se lo deja correr: guarda el progreso de
 > forma incremental y puede reanudarse. Para la entrega basta con demostrarlo con
 > un subconjunto (`npm run scrape:test`).
 
 ---
 
-## 📂 Salida
+## Salida
 
 Todo se guarda en `output/` (ignorada por git):
 
@@ -99,7 +99,7 @@ interno, para garantizar unicidad y trazabilidad.
 
 ---
 
-## 🧠 Cómo funciona (el desafío técnico)
+## Cómo funciona (el desafío técnico)
 
 El sitio **no** es HTML estático: es una aplicación **JSF (Mojarra) + PrimeFaces**
 con estado en el servidor. No hay URLs por página ni links directos a los PDFs;
@@ -135,7 +135,7 @@ todo ocurre por **POST con `ViewState`**. El scraper reproduce ese protocolo:
 
 ---
 
-## ⚠️ Manejo de errores 429 (rate limiting)
+## Manejo de errores 429 (rate limiting)
 
 Centralizado en [`httpClient.ts`](src/httpClient.ts). Ante un **429 Too Many
 Requests** (o errores transitorios 5xx / red / timeout):
@@ -154,7 +154,7 @@ descargas de PDF, para no sobrecargar el servidor.
 
 ---
 
-## 🗂️ Estructura del proyecto
+## Estructura del proyecto
 
 ```
 src/
@@ -172,7 +172,7 @@ src/
 
 ---
 
-## 🔀 Adaptar a otro sitio
+## Adaptar a otro sitio
 
 La lógica JSF/PrimeFaces es genérica. Para apuntar al sitio del Poder Judicial
 (u otro análogo), ajustá en [`src/config.ts`](src/config.ts):
@@ -187,7 +187,7 @@ La lógica JSF/PrimeFaces es genérica. Para apuntar al sitio del Poder Judicial
 
 ---
 
-## 🧰 Scripts npm
+## Scripts npm
 
 | Script | Acción |
 |--------|--------|
@@ -200,7 +200,7 @@ La lógica JSF/PrimeFaces es genérica. Para apuntar al sitio del Poder Judicial
 
 ---
 
-## 📝 Notas
+## Notas
 
 - **Uso responsable:** los datos son públicos; el scraper aplica delays y respeta
   el rate limiting. Ajustá `--delay` según la tolerancia del servidor.
