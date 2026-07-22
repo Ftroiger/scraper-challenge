@@ -1,0 +1,35 @@
+{
+  "name": "scraper-challenge",
+  "version": "1.0.0",
+  "description": "Scraper en TypeScript para el Repositorio Digital de OEFA / Jurisprudencia PJ (sitios JSF + PrimeFaces) usando solo HTTP + parsing (sin navegador).",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts",
+    "scrape": "ts-node src/index.ts",
+    "scrape:meta": "ts-node src/index.ts --no-pdf",
+    "scrape:test": "ts-node src/index.ts --max-pages 2 --max-pdfs 3",
+    "retry": "ts-node src/index.ts --retry-failed",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "scraper",
+    "typescript",
+    "jsf",
+    "primefaces",
+    "oefa",
+    "pdf"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0"
+  }
+}
