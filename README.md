@@ -1,4 +1,4 @@
-# Scraper — Repositorio Digital de Resoluciones (TypeScript, sin navegador)
+# Scraper — Repositorio Digital de Resoluciones
 
 Scraper en **TypeScript** que recorre un sitio **JSF + PrimeFaces**, extrae todos
 los documentos de la grilla de resultados y descarga los PDFs asociados, con
@@ -9,12 +9,11 @@ Está construido **solo con peticiones HTTP + parsing** (`axios` + `cheerio`),
 **sin ninguna automatización de navegador** (nada de Puppeteer / Playwright /
 Selenium), tal como exige el desafío.
 
-## Sitios objetivo
+## Sitio objetivo
 
 | Sitio | URL | Acceso |
 |-------|-----|--------|
-| **OEFA** (por defecto) | `https://publico.oefa.gob.pe/repdig/consulta/consultaTfa.xhtml` | Público, **sin VPN** |
-| **Poder Judicial (PJ)** | `https://jurisprudencia.pj.gob.pe/jurisprudenciaweb/faces/page/resultado.xhtml` | Requiere **VPN a Perú** |
+| **OEFA** | `https://publico.oefa.gob.pe/repdig/consulta/consultaTfa.xhtml` | Público, **sin VPN** |
 
 El scraper apunta por defecto al **repositorio digital de OEFA** (Tribunal de
 Fiscalización Ambiental), que es público y permite desarrollar y validar sin
@@ -99,7 +98,7 @@ interno, para garantizar unicidad y trazabilidad.
 
 ---
 
-## Cómo funciona (el desafío técnico)
+## Cómo funciona el scaper
 
 El sitio **no** es HTML estático: es una aplicación **JSF (Mojarra) + PrimeFaces**
 con estado en el servidor. No hay URLs por página ni links directos a los PDFs;
@@ -197,14 +196,3 @@ La lógica JSF/PrimeFaces es genérica. Para apuntar al sitio del Poder Judicial
 | `npm run retry` | Reintenta descargas fallidas. |
 | `npm run build` | Compila TypeScript a `dist/`. |
 | `npm run typecheck` | Chequeo de tipos sin emitir. |
-
----
-
-## Notas
-
-- **Uso responsable:** los datos son públicos; el scraper aplica delays y respeta
-  el rate limiting. Ajustá `--delay` según la tolerancia del servidor.
-- El progreso se **persiste de forma incremental** tras cada página, por lo que
-  una interrupción (Ctrl+C) no pierde lo ya extraído.
-- Los PDFs pueden pesar varios MB cada uno; la descarga completa de los ~1753
-  documentos es voluminosa. Para validar, usá `npm run scrape:test`.

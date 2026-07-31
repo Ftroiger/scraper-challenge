@@ -1,7 +1,6 @@
 /**
  * Logger minimalista con niveles y timestamp.
  *
- * Se evita añadir dependencias externas: el reto pide solo axios + cheerio.
  */
 
 type Level = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR';

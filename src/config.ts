@@ -2,7 +2,7 @@
  * Configuración central del scraper.
  *
  * Todos los valores tienen un default razonable pensado para no saturar el
- * servidor. Se pueden sobreescribir por CLI (ver `parseArgs` en index.ts).
+ * servidor.
  */
 import * as path from 'path';
 
